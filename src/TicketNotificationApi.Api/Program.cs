@@ -1,4 +1,4 @@
-using Microsoft.OpenApi;
+using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using TicketNotificationApi.Api.Middleware;
 using TicketNotificationApi.Application;
