@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketNotificationApi.Domain.Entities;
+﻿using TicketNotificationApi.Domain.Entities;
 
 namespace TicketNotificationApi.Application.Dtos
 {
     public static class MappingExtensions
     {
-        public static NotificationResponse ToResponse(this Domain.Entities.Notification notification)
+        public static NotificationResponse ToResponse(this Notification notification)
         {
             return new NotificationResponse(
                 notification.Id,
