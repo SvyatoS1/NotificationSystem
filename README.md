@@ -35,18 +35,46 @@ Verify installation:
 ```bash
 dotnet --version
 ```
+## Running Locally
 
-### Run the API
+### Run with .NET CLI
 
-```bash
+```bash id="2s1xki"
 dotnet run --project src/TicketNotificationApi.Api
 ```
 
-After startup, open Swagger UI (check console output for the exact URL), typically:
+Swagger UI is available after startup (check console output), typically:
 
-```text
+```text id="6spu8e"
 https://localhost:<port>/swagger
 ```
+
+### Run with Docker
+
+Build the image:
+
+```bash id="6pw64w"
+docker build -t ticket-notification-api .
+```
+
+Run the container:
+
+```bash id="5l3kfo"
+docker run -p 8080:8080 ticket-notification-api
+```
+
+API becomes available at:
+
+```text id="c7cglt"
+http://localhost:8080
+```
+
+Swagger UI:
+
+```text id="1af6kn"
+http://localhost:8080/swagger
+```
+--- 
 
 ### Run Tests
 
