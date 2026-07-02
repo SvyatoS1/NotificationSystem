@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketNotificationApi.Application.Abstractions;
+﻿using TicketNotificationApi.Application.Abstractions;
 using TicketNotificationApi.Domain.Entities;
 
 namespace TicketNotificationApi.Application.Tests.Fakes
 {
     public class FakeNotificationRepository : INotificationRepository
     {
-        public Dictionary<Guid, Notification> Notifications { get; } = new();
+        public Dictionary<Guid, Notification> Notifications { get; } = [];
 
         public Task AddRangeAsync(IEnumerable<Notification> notifications)
         {

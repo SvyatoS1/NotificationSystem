@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TicketNotificationApi.Domain.Enums
+﻿namespace TicketNotificationApi.Domain.Enums
 {
     public enum Priority
     {
         Low,
         Medium,
-        High 
+        High
     }
 }

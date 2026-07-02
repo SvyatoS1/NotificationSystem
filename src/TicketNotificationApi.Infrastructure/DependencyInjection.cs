@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TicketNotificationApi.Application.Abstractions;
 using TicketNotificationApi.Infrastructure.Notifications;
 using TicketNotificationApi.Infrastructure.Repositories;

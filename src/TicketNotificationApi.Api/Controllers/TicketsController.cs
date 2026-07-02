@@ -8,23 +8,16 @@ namespace TicketNotificationApi.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TicketsController : ControllerBase
+    public class TicketsController(
+        ITicketRepository ticketRepository,
+        INotificationRepository notificationRepository,
+        INotificationOrchestrator notificationOrchestrator) : ControllerBase
     {
-        private readonly ITicketRepository _ticketRepository;
-        private readonly INotificationRepository _notificationRepository;
-        private readonly INotificationOrchestrator _notificationOrchestrator;
+        private readonly ITicketRepository _ticketRepository = ticketRepository;
+        private readonly INotificationRepository _notificationRepository = notificationRepository;
+        private readonly INotificationOrchestrator _notificationOrchestrator = notificationOrchestrator;
 
-        public TicketsController(
-            ITicketRepository ticketRepository,
-            INotificationRepository notificationRepository,
-            INotificationOrchestrator notificationOrchestrator)
-        {
-            _ticketRepository = ticketRepository;
-            _notificationRepository = notificationRepository;
-            _notificationOrchestrator = notificationOrchestrator;
-        }
-
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = nameof(GetTicketByIdAsync))]
         public async Task<IActionResult> GetTicketByIdAsync(Guid id)
         {
             var ticket = await _ticketRepository.GetByIdAsync(id);
@@ -33,7 +26,7 @@ namespace TicketNotificationApi.Api.Controllers
                 return NotFound();
             }
             var notifications = await _notificationRepository.GetByTicketIdAsync(id);
-            ticket.Notifications = notifications.ToList();
+            ticket.Notifications = [.. notifications];
 
             return Ok(ticket.ToResponse());
         }
@@ -53,9 +46,9 @@ namespace TicketNotificationApi.Api.Controllers
             await _ticketRepository.AddAsync(ticket);
 
             var notifications = await _notificationOrchestrator.CreateNotificationsForTicketAsync(ticket);
-            ticket.Notifications = notifications.ToList();
+            ticket.Notifications = [.. notifications];
 
-            return CreatedAtAction(nameof(GetTicketByIdAsync), new { id = ticket.Id }, ticket);
+            return CreatedAtRoute(nameof(GetTicketByIdAsync), new { id = ticket.Id }, ticket);
         }
 
         [HttpPost("{id}/notify")]
@@ -70,8 +63,8 @@ namespace TicketNotificationApi.Api.Controllers
                 {
                     return NotFound();
                 }
-                
-                ticket.Notifications = notifications.ToList();
+
+                ticket.Notifications = [.. notifications];
 
                 return Ok(ticket.ToResponse());
             }

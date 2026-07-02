@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TicketNotificationApi.Application.Abstractions;
+﻿using TicketNotificationApi.Application.Abstractions;
 using TicketNotificationApi.Domain.Entities;
 using TicketNotificationApi.Domain.Enums;
 

@@ -24,7 +24,7 @@ namespace TicketNotificationApi.Application.Dtos
                 ticket.Description,
                 ticket.Priority,
                 ticket.CreatedAt,
-                ticket.Notifications.Select(n => n.ToResponse()).ToList()
+                [.. ticket.Notifications.Select(n => n.ToResponse())]
             );
         }
     }
