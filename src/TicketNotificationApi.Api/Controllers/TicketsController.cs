@@ -17,7 +17,7 @@ namespace TicketNotificationApi.Api.Controllers
         private readonly INotificationRepository _notificationRepository = notificationRepository;
         private readonly INotificationOrchestrator _notificationOrchestrator = notificationOrchestrator;
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = nameof(GetTicketByIdAsync))]
         public async Task<IActionResult> GetTicketByIdAsync(Guid id)
         {
             var ticket = await _ticketRepository.GetByIdAsync(id);
@@ -48,7 +48,7 @@ namespace TicketNotificationApi.Api.Controllers
             var notifications = await _notificationOrchestrator.CreateNotificationsForTicketAsync(ticket);
             ticket.Notifications = [.. notifications];
 
-            return CreatedAtAction(nameof(GetTicketByIdAsync), new { id = ticket.Id }, ticket);
+            return CreatedAtRoute(nameof(GetTicketByIdAsync), new { id = ticket.Id }, ticket);
         }
 
         [HttpPost("{id}/notify")]
