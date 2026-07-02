@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TicketNotificationApi.Api/TicketNotificationApi.Api.csproj" />
+    <Project Path="src/TicketNotificationApi.Application/TicketNotificationApi.Application.csproj" />
+    <Project Path="src/TicketNotificationApi.Domain/TicketNotificationApi.Domain.csproj" />
+    <Project Path="src/TicketNotificationApi.Infrastructure/TicketNotificationApi.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TicketNotificationApi.Application.Tests/TicketNotificationApi.Application.Tests.csproj" />
+  </Folder>
+</Solution>
