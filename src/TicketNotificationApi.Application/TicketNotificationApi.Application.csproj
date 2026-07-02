@@ -5,7 +5,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\" />
     <Folder Include="Dtos\" />
     <Folder Include="Notifications\" />
   </ItemGroup>
