@@ -4,21 +4,14 @@ using TicketNotificationApi.Domain.Enums;
 
 namespace TicketNotificationApi.Application.Notifications
 {
-    public class NotificationOrchestrator : INotificationOrchestrator
+    public class NotificationOrchestrator(
+        ITicketRepository ticketRepository,
+        INotificationRepository notificationRepository,
+        IEnumerable<INotificationSender> notificationSenders) : INotificationOrchestrator
     {
-        private readonly ITicketRepository _ticketRepository;
-        private readonly INotificationRepository _notificationRepository;
-        private readonly IEnumerable<INotificationSender> _notificationSenders;
-
-        public NotificationOrchestrator(
-            ITicketRepository ticketRepository,
-            INotificationRepository notificationRepository,
-            IEnumerable<INotificationSender> notificationSenders)
-        {
-            _ticketRepository = ticketRepository;
-            _notificationRepository = notificationRepository;
-            _notificationSenders = notificationSenders;
-        }
+        private readonly ITicketRepository _ticketRepository = ticketRepository;
+        private readonly INotificationRepository _notificationRepository = notificationRepository;
+        private readonly IEnumerable<INotificationSender> _notificationSenders = notificationSenders;
 
         public async Task<IEnumerable<Notification>> CreateNotificationsForTicketAsync(Ticket ticket)
         {

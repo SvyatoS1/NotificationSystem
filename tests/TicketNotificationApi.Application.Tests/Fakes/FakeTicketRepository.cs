@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using TicketNotificationApi.Application.Abstractions;
+﻿using TicketNotificationApi.Application.Abstractions;
 using TicketNotificationApi.Domain.Entities;
 
 namespace TicketNotificationApi.Application.Tests.Fakes
 {
     public class FakeTicketRepository : ITicketRepository
     {
-        public Dictionary<Guid, Ticket> Tickets { get; } = new();
+        public Dictionary<Guid, Ticket> Tickets { get; } = [];
 
         public Task AddAsync(Ticket ticket)
         {

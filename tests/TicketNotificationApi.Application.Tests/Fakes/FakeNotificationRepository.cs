@@ -5,7 +5,7 @@ namespace TicketNotificationApi.Application.Tests.Fakes
 {
     public class FakeNotificationRepository : INotificationRepository
     {
-        public Dictionary<Guid, Notification> Notifications { get; } = new();
+        public Dictionary<Guid, Notification> Notifications { get; } = [];
 
         public Task AddRangeAsync(IEnumerable<Notification> notifications)
         {
